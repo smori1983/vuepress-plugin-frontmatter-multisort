@@ -1,0 +1,28 @@
+{
+  "name": "vuepress-plugin-frontmatter-multisort",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "src/**",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "author": "Shinichiro MORI",
+  "license": "MIT",
+  "keywords": [
+    "vuepress",
+    "vuepress-plugin"
+  ],
+  "homepage": "https://github.com/smori1983/vuepress-plugin-frontmatter-multisort#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smori1983/vuepress-plugin-frontmatter-multisort.git"
+  }
+}
