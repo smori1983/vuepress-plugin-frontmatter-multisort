@@ -4,11 +4,46 @@ module.exports = {
 
   themeConfig: {
     search: false,
-    sidebar: [],
+    sidebar: [
+      '/items/',
+    ],
   },
 
   plugins: [
-    [require('../../src')],
+    [require('../../src'), {
+      config: {
+        key: 'attribute',
+        dimensions: [
+          {
+            name: 'year',
+          },
+          {
+            name: 'category',
+          },
+          {
+            name: 'name',
+          },
+        ],
+        indexPage: {
+          path: '/items/',
+          title: 'Item list',
+        },
+        listPages: [
+          {
+            dimension: 'year',
+            path: '/items/year/:dimension/',
+            title: 'Item list (:dimension)',
+            indexTitle: 'By year',
+          },
+          {
+            dimension: 'category',
+            path: '/items/category/:dimension/',
+            title: 'Item list (:dimension)',
+            indexTitle: 'By category',
+          },
+        ],
+      },
+    }],
   ],
 
   markdown: {
