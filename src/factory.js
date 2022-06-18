@@ -47,6 +47,9 @@ const build = (pages, config) => {
           lines.push(`- [${page.title}](${page.regularPath})`);
         }
       });
+      lines.push('');
+      lines.push('-----');
+      lines.push(`- Back to [${config.indexPage.title}](${config.indexPage.path})`);
 
       const path = listPageConfig.path.replace(':dimension', dimensionValue);
 
