@@ -42,10 +42,14 @@ const build = (pages, config) => {
 
       lines.push(`# ${pageTitle}`);
       lines.push('');
+      const pages = [];
       targetPages.forEach((page) => {
         if (page.frontmatter[config.key][dimension] === dimensionValue) {
-          lines.push(`- [${page.title}](${page.regularPath})`);
+          pages.push(page);
         }
+      });
+      sortPages(pages).forEach((page) => {
+        lines.push(`- [${page.title}](${page.regularPath})`);
       });
       lines.push('');
       lines.push('-----');
@@ -116,6 +120,18 @@ const getDimensionValues = (pages, config, dimension) => {
   result.sort();
 
   return result;
+};
+
+/**
+ * @param {Page[]} pages
+ * @return {Page[]}
+ */
+const sortPages = (pages) => {
+  pages.sort((a, b) => {
+    return a.title <= b.title ? -1 : 1;
+  });
+
+  return pages;
 };
 
 module.exports.build = build;
