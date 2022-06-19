@@ -42,12 +42,7 @@ const build = (pages, config) => {
 
       lines.push(`# ${pageTitle}`);
       lines.push('');
-      const pages = [];
-      targetPages.forEach((page) => {
-        if (page.frontmatter[config.key][dimension] === dimensionValue) {
-          pages.push(page);
-        }
-      });
+      const pages = filterPagesByDimensionValue(targetPages, config, dimension, dimensionValue);
       sortPages(pages).forEach((page) => {
         lines.push(`- [${page.title}](${page.regularPath})`);
       });
@@ -120,6 +115,19 @@ const getDimensionValues = (pages, config, dimension) => {
   result.sort();
 
   return result;
+};
+
+/**
+ * @param {Page[]} pages
+ * @param {Object} config
+ * @param {string} dimension
+ * @param {*} value
+ * @return {Page[]}
+ */
+const filterPagesByDimensionValue = (pages, config, dimension, value) => {
+  return pages.filter((page) => {
+    return page.frontmatter[config.key][dimension] === value;
+  });
 };
 
 /**
