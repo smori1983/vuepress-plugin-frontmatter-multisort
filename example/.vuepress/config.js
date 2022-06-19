@@ -5,7 +5,7 @@ module.exports = {
   themeConfig: {
     search: false,
     sidebar: [
-      '/items/',
+      '/-/items/',
     ],
   },
 
@@ -25,19 +25,19 @@ module.exports = {
           },
         ],
         indexPage: {
-          path: '/items/',
+          path: '/-/items/',
           title: 'Item list',
         },
         listPages: [
           {
             dimension: 'year',
-            path: '/items/year/:dimension/',
+            path: '/-/items/year/:dimension/',
             title: 'Item list (:dimension)',
             indexTitle: 'By year',
           },
           {
             dimension: 'category',
-            path: '/items/category/:dimension/',
+            path: '/-/items/category/:dimension/',
             title: 'Item list (:dimension)',
             indexTitle: 'By category',
           },
