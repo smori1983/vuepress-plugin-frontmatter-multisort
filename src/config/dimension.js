@@ -30,6 +30,13 @@ class Dimension {
   }
 
   /**
+   * @param {string} type
+   */
+  set defaultSortType(type) {
+    this._defaultSortType = type;
+  }
+
+  /**
    * @return {Object}
    */
   toConfig() {

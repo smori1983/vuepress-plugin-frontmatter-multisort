@@ -38,7 +38,13 @@ const setDimensions = (config, configInput) => {
 
   configInput.dimensions.forEach((dim) => {
     if (typeof(dim.name) === 'string') {
-      config.addDimension(new Dimension(dim.name));
+      const dimension = new Dimension(dim.name);
+
+      if (typeof(dim.sort) === 'string' && ['asc', 'desc'].indexOf(dim.sort) >= 0) {
+        dimension.defaultSortType = dim.sort;
+      }
+
+      config.addDimension(dimension);
     }
   });
 };
