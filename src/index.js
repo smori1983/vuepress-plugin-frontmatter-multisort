@@ -5,6 +5,7 @@
  * @typedef {import('vuepress-types').PluginOptionAPI} PluginOptionAPI
  */
 
+const configBuilder = require('./config/builder');
 const factory = require('./factory');
 
 /**
@@ -14,7 +15,16 @@ const factory = require('./factory');
  */
 module.exports = (options, context) => {
   const prepareAdditionalPages = async () => {
-    return factory.build(context.pages, options.config || {});
+    const pages = [];
+    const configs = configBuilder.build(options.configs || []);
+
+    configs.forEach((config) => {
+      factory.build(context.pages, config.toConfig()).forEach((page) => {
+        pages.push((page));
+      });
+    });
+
+    return pages;
   };
 
   return {
