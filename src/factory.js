@@ -33,7 +33,7 @@ const build = (pages, config) => {
     const dimension = listPageConfig.dimension;
     const dimensionValues = getDimensionValues(targetPages, config, dimension);
 
-    indexLines.push(`## ${listPageConfig.indexTitle}`);
+    indexLines.push(`## ${listPageConfig.indexPageTitle}`);
     indexLines.push('');
 
     dimensionValues.forEach((dimensionValue) => {
