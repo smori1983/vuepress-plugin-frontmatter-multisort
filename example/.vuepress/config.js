@@ -16,9 +16,11 @@ module.exports = {
         dimensions: [
           {
             name: 'year',
+            sort: 'desc',
           },
           {
             name: 'category',
+            sort: 'asc',
           },
           {
             name: 'name',
