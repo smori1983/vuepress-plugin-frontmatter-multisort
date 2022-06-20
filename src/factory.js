@@ -112,10 +112,29 @@ const getDimensionValues = (pages, config, dimension) => {
 
   const result = Array.from(values);
 
-  result.sort();
+  if (getSortType(config, dimension) === 'asc') {
+    result.sort();
+  } else {
+    result.sort().reverse();
+  }
 
   return result;
 };
+
+/**
+ * @param {Object} config
+ * @param {string} dimension
+ * @return {string}
+ */
+const getSortType = (config, dimension) => {
+  for (let i = 0; i < config.dimensions.length; i++) {
+    if (config.dimensions[i].name === dimension) {
+      return config.dimensions[i].defaultSortType;
+    }
+  }
+
+  return 'asc';
+}
 
 /**
  * @param {Page[]} pages
