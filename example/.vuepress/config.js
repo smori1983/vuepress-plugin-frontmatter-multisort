@@ -11,7 +11,7 @@ module.exports = {
 
   plugins: [
     [require('../../src'), {
-      config: {
+      configs: [{
         key: 'attribute',
         dimensions: [
           {
@@ -42,7 +42,7 @@ module.exports = {
             indexPageTitle: 'By category',
           },
         ],
-      },
+      }],
     }],
   ],
 
