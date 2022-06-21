@@ -43,7 +43,7 @@ const build = (pages, config) => {
       lines.push(`# ${pageTitle}`);
       lines.push('');
       const pages = filterPagesByDimensionValue(targetPages, config, dimension, dimensionValue);
-      sortPages(pages).forEach((page) => {
+      sortPages(pages, config, listPageConfig).forEach((page) => {
         lines.push(`- [${page.title}](${page.regularPath})`);
       });
       lines.push('');
@@ -151,14 +151,58 @@ const filterPagesByDimensionValue = (pages, config, dimension, value) => {
 
 /**
  * @param {Page[]} pages
+ * @param {Object} config
+ * @param {Object} listPageConfig
  * @return {Page[]}
  */
-const sortPages = (pages) => {
+const sortPages = (pages, config, listPageConfig) => {
   pages.sort((a, b) => {
+    for (let i = 0; i < listPageConfig.sortOrder.length; i++) {
+      const dimensionConfig = getDimensionConfig(config, listPageConfig.sortOrder[i]);
+      const sortResult = sort(a, b, config, dimensionConfig);
+
+      if (sortResult !== 0) {
+        return sortResult;
+      }
+    }
+
     return a.title <= b.title ? -1 : 1;
   });
 
   return pages;
+};
+
+/**
+ * @param {Page} a
+ * @param {Page} b
+ * @param {Object} config
+ * @param {Object} dimensionConfig
+ */
+const sort = (a, b, config, dimensionConfig) => {
+
+  if (a.frontmatter[config.key][dimensionConfig.name] === b.frontmatter[config.key][dimensionConfig.name]) {
+    return 0;
+  }
+
+  if (dimensionConfig.defaultSortType === 'asc') {
+    return a.frontmatter[config.key][dimensionConfig.name] <= b.frontmatter[config.key][dimensionConfig.name] ? -1 : 1;
+  } else {
+    return a.frontmatter[config.key][dimensionConfig.name] <= b.frontmatter[config.key][dimensionConfig.name] ? 1 : -1;
+  }
+};
+
+/**
+ * @param {Object} config
+ * @param {string} dimension
+ */
+const getDimensionConfig = (config, dimension) => {
+  for (let i = 0; i < config.dimensions.length; i++) {
+    if (config.dimensions[i].name === dimension) {
+      return config.dimensions[i];
+    }
+  }
+
+  return null;
 };
 
 module.exports.build = build;

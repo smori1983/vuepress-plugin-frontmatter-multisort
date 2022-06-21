@@ -54,9 +54,17 @@ class Config {
    * @param {ListPage} page
    */
   addListPage(page) {
-    if (this._findDimension(page.dimension) !== null) {
-      this._listPages.push(page);
+    if (this._findDimension(page.dimension) === null) {
+      return;
     }
+
+    for (let i = 0; i < page.sortOrder.length; i++) {
+      if (this._findDimension(page.sortOrder[i]) === null) {
+        return;
+      }
+    }
+
+    this._listPages.push(page);
   }
 
   /**

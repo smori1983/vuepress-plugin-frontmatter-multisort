@@ -24,6 +24,12 @@ class ListPage {
     this._title = title;
 
     /**
+     * @type {string[]}
+     * @private
+     */
+    this._sortOrder = [];
+
+    /**
      * @type {string}
      * @private
      */
@@ -35,6 +41,20 @@ class ListPage {
    */
   get dimension() {
     return this._dimension;
+  }
+
+  /**
+   * @param {string[]} order
+   */
+  set sortOrder(order) {
+    this._sortOrder = order;
+  }
+
+  /**
+   * @return {string[]}
+   */
+  get sortOrder() {
+    return this._sortOrder;
   }
 
   /**
@@ -52,6 +72,7 @@ class ListPage {
       dimension: this._dimension,
       path: this._path,
       title: this._title,
+      sortOrder: this._sortOrder,
       indexPageTitle: this._indexPageTitle,
     };
   }

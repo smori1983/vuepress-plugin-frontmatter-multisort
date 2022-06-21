@@ -114,6 +114,12 @@ const setListPage = (config, input) => {
 
   const listPage = new ListPage(input.dimension, input.path, input.title);
 
+  if (Array.isArray(input.sortOrder)) {
+    listPage.sortOrder = input.sortOrder.filter((item) => {
+      return typeof(item) === 'string';
+    });
+  }
+
   if (typeof(input.indexPageTitle) === 'string') {
     listPage.indexPageTitle = input.indexPageTitle;
   }
