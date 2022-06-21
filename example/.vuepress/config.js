@@ -6,6 +6,7 @@ module.exports = {
     search: false,
     sidebar: [
       '/-/items/',
+      '/-/articles/',
     ],
   },
 
@@ -44,6 +45,39 @@ module.exports = {
               title: 'Item list (:dimension)',
               sortOrder: ['year'],
               indexPageTitle: 'By category',
+            },
+          ],
+        },
+        {
+          key: 'article',
+          dimensions: [
+            {
+              name: 'author',
+            },
+            {
+              name: 'date',
+              sort: 'desc',
+            },
+            {
+              name: 'category',
+            },
+          ],
+          indexPage: {
+            path: '/-/articles/',
+            title: 'Articles',
+          },
+          listPages: [
+            {
+              dimension: 'category',
+              path: '/-/articles/category/:dimension/',
+              title: 'Articles about :dimension',
+              sortOrder: ['date'],
+            },
+            {
+              dimension: 'author',
+              path: '/-/articles/author/:dimension/',
+              title: 'Articles by :dimension',
+              sortOrder: ['date', 'category'],
             },
           ],
         },
