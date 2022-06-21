@@ -11,41 +11,43 @@ module.exports = {
 
   plugins: [
     [require('../../src'), {
-      configs: [{
-        key: 'attribute',
-        dimensions: [
-          {
-            name: 'year',
-            sort: 'desc',
+      configs: [
+        {
+          key: 'attribute',
+          dimensions: [
+            {
+              name: 'year',
+              sort: 'desc',
+            },
+            {
+              name: 'category',
+              sort: 'asc',
+            },
+            {
+              name: 'name',
+            },
+          ],
+          indexPage: {
+            path: '/-/items/',
+            title: 'Item list',
           },
-          {
-            name: 'category',
-            sort: 'asc',
-          },
-          {
-            name: 'name',
-          },
-        ],
-        indexPage: {
-          path: '/-/items/',
-          title: 'Item list',
+          listPages: [
+            {
+              dimension: 'year',
+              path: '/-/items/year/:dimension/',
+              title: 'Item list (:dimension)',
+              indexPageTitle: 'By year',
+            },
+            {
+              dimension: 'category',
+              path: '/-/items/category/:dimension/',
+              title: 'Item list (:dimension)',
+              sortOrder: ['year'],
+              indexPageTitle: 'By category',
+            },
+          ],
         },
-        listPages: [
-          {
-            dimension: 'year',
-            path: '/-/items/year/:dimension/',
-            title: 'Item list (:dimension)',
-            indexPageTitle: 'By year',
-          },
-          {
-            dimension: 'category',
-            path: '/-/items/category/:dimension/',
-            title: 'Item list (:dimension)',
-            sortOrder: ['year'],
-            indexPageTitle: 'By category',
-          },
-        ],
-      }],
+      ],
     }],
   ],
 
