@@ -41,6 +41,7 @@ module.exports = {
             dimension: 'category',
             path: '/-/items/category/:dimension/',
             title: 'Item list (:dimension)',
+            sortOrder: ['year'],
             indexPageTitle: 'By category',
           },
         ],
