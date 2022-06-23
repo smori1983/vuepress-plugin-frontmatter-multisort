@@ -44,7 +44,8 @@ const build = (pages, config) => {
       lines.push('');
       const pages = filterPagesByDimensionValue(targetPages, config, dimension, dimensionValue);
       sortPages(pages, config, listPageConfig).forEach((page) => {
-        lines.push(`- [${page.title}](${page.regularPath})`);
+        const title = prepareListItemTitle(page, config, listPageConfig);
+        lines.push(`- [${title}](${page.regularPath})`);
       });
       lines.push('');
       lines.push('-----');
@@ -204,5 +205,22 @@ const getDimensionConfig = (config, dimension) => {
 
   return null;
 };
+
+/**
+ * @param {Page} page
+ * @param {Object} config
+ * @param {Object} listPageConfig
+ */
+const prepareListItemTitle = (page, config, listPageConfig) => {
+  let result = listPageConfig.listItemTitle;
+
+  result = result.replace('@title', page.title);
+
+  config.dimensions.map(dim => dim.name).forEach((dimensionName) => {
+    result = result.replace(':' + dimensionName, page.frontmatter[config.key][dimensionName] || '');
+  });
+
+  return result;
+}
 
 module.exports.build = build;

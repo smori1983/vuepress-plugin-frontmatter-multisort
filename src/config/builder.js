@@ -120,6 +120,10 @@ const setListPage = (config, input) => {
     });
   }
 
+  if (typeof(input.listItemTitle) === 'string') {
+    listPage.listItemTitle = input.listItemTitle;
+  }
+
   if (typeof(input.indexPageTitle) === 'string') {
     listPage.indexPageTitle = input.indexPageTitle;
   }

@@ -33,6 +33,12 @@ class ListPage {
      * @type {string}
      * @private
      */
+    this._listItemTitle = ':title';
+
+    /**
+     * @type {string}
+     * @private
+     */
     this._indexPageTitle = dimension;
   }
 
@@ -58,6 +64,13 @@ class ListPage {
   }
 
   /**
+   * @param {string} title
+   */
+  set listItemTitle(title) {
+    this._listItemTitle = title;
+  }
+
+  /**
    * @param {string} value
    */
   set indexPageTitle(value) {
@@ -73,6 +86,7 @@ class ListPage {
       path: this._path,
       title: this._title,
       sortOrder: this._sortOrder,
+      listItemTitle: this._listItemTitle,
       indexPageTitle: this._indexPageTitle,
     };
   }
