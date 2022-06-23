@@ -33,7 +33,7 @@ class ListPage {
      * @type {string}
      * @private
      */
-    this._listItemTitle = ':title';
+    this._listItemTitle = '@title';
 
     /**
      * @type {string}
